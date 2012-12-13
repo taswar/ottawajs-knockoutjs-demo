@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+	<script src="Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+Small payload to send back to server
+<pre data-bind="text: ko.toJSON($root, null, 2)"></pre>
+
+<div>
+        Firtname : <input type="text" name="firstname" data-bind="value: firstname" /> <br />
+        Lastname: <input type="text" name="lastname" data-bind="value: lastname" /><br />
+        FullName: <input type="text" name="age" data-bind="value: fullName()" /><br />
+    </div>
+
+<script type="text/javascript">
+
+var ViewModel = function PersonModel()  {
+	this.firstname = ko.observable("Taswar");
+	this.lastname = ko.observable("Bhatti");
+	this.age = ko.observable(36);
+	this.age.choices = ['apple', 'orange'];
+        
+	this.fullName = ko.computed(function() { 
+        return this.firstname() + " " + this.lastname(); 
+	}, this);
+		
+};
+
+ko.utils.extend(ViewModel.prototype, {
+	getFullName: function() {
+		return this.firstname() + " " + this.lastname();
+	},
+	
+	toJSON: function() {
+	    //delete this.fullName;
+	    //delete this.choices;
+		return this;
+	}
+});
+
+ko.applyBindings(new ViewModel());
+</script>
+<!--<pre data-bind="text: ko.toJSON($root, ['firstname', 'lastname'], 2)"></pre>-->
+</body>
+</html>

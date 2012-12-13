@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+	<script src="Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+Custom bindings
+<pre>
+ko.bindingHandlers.yourBindingName = {
+    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        // This will be called when the binding is first applied to an element
+        // Set up any initial state, event handlers, etc. here
+    },
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        // This will be called once when the binding is first applied to an element,
+        // and again whenever the associated observable changes value.
+        // Update the DOM element based on the supplied values here.
+    }
+};
+</pre>
+
+ <div data-bind="text: name"></div><hr />
+    <input data-bind="value: name" type="text" /><br />
+    <span data-bind="fadeInText: showFull, duration: 8000"></span>
+
+<script type="text/javascript">		
+
+    ko.bindingHandlers.fadeInText = {
+        'update': function (element, valueAccessor, allBindingsAccessor) {
+            var item = $(element),
+				duration = allBindingsAccessor().duration || "slow";
+
+            item.hide();
+            ko.bindingHandlers.text.update(element, valueAccessor);
+            item.fadeIn(duration);
+        }
+    };
+
+	function ViewModel() {
+            this.name = ko.observable("Curosity Mars Mission");
+            this.serial = ko.observable("123456789");
+            this.finding_aliens = ko.observable("low");
+            this.showFull = ko.computed(function() { 
+                return this.name() + " " + this.serial(); //pitfall 
+            }, this);
+        };
+
+	ko.applyBindings(new ViewModel());
+
+	
+	
+	
+	/*
+	
+	
+	*/
+         
+     </script>

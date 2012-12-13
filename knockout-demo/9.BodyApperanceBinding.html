@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+<script src="Scripts/knockout-2.1.0.js"></script>
+</head>
+<body>
+     <p>$text content of element</p>
+     <p>$html content of element</p>
+    <p>$visible show or hide element</p>
+    <p>$css add css style</p>
+    <p>$style style an attribute</p>
+    <p>$attr add attribute to element</p>
+
+    <table>
+        <thead>
+            <th>Product</th>
+            <th>Price</th>
+        </thead>
+        <tbody data-bind="foreach: shoppingCart" border="1">
+            <tr>
+                <td data-bind="html: name"></td>
+                <td data-bind="text: price, style: {fontWeight: discount() > 0 ? 'bold' : 'normal'}"></td>
+                <td data-bind="visible: discount() === 0">
+                    <span style="color: red">No discount for you <a data-bind="attr: { href: name()}">View</a></span>                   
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+     <script type="text/javascript">
+         function Product(name, price, discount) {
+             this.name = ko.observable(name);
+             this.price = ko.observable(price);
+             discount = discount || 0;
+             this.discount = ko.observable(discount);
+         }
+
+         function ViewModel() {
+             var self = this;
+
+             this.shoppingCart = ko.observableArray([
+                     new Product("<i>Coffee</i>", 1, 0.2),
+                     new Product("Cookies", 1),
+                     new Product("Muffin", 2)
+             ]);
+         }
+         ko.applyBindings(new ViewModel());
+
+         //, 
+         //<a data-bind="attr: { href: name()}">View</a>
+     </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>      
+    <hr />
+    <h2>Select list</h2>
+    <hr />
+    <div data-bind="text: name"></div><hr />
+    <input data-bind="value: name" type="text" /><br />
+    Serial with name: <span data-bind="text: showFull"></span><br />
+    <select data-bind="options: chances, value: finding_aliens"></select>
+
+    <script type="text/javascript">
+        function NasaViewModel() {
+            this.name = ko.observable("Curosity Mars Mission");
+            this.serial = ko.observable("123456789");
+            this.finding_aliens = ko.observable("low");
+            this.chances = ['none', 'low', 'high', 'maybe'];
+            this.showFull = ko.computed(function () {
+                return this.name() + " " + this.serial() + " " + this.finding_aliens(); //pitfall return this.name + ' ' + this.serial
+            }, this);
+        };
+
+        ko.applyBindings(new NasaViewModel());
+
+    </script>
+
+</body>
+</html>

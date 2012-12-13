@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+    <h2>in knockout we will do</h2>
+    <hr />
+    <div data-bind="text: name"></div><hr />
+    <input data-bind="value: name" type="text" />
+
+    <script type="text/javascript">
+        var nasa = {
+            name: ko.observable("curosity mars mission"),
+            finding_aliens: "low"
+        };
+
+        ko.applyBindings(nasa);
+
+    </script>
+</body>
+</html>
+   

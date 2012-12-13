@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+</head>
+<body>
+    <form>
+        <p>Firstname: <input data-bind="value: firstname" /></p>
+        <p>Lastname: <input data-bind="value: lastname" /></p>
+        <p>Phone: <input data-bind="value: phone" /></p>
+        <p>Secondary Phone: <input data-bind="value: sphone, enable: phone" /></p>
+        <p>Can telemarket <input data-bind="checked: canCall" type="checkbox" /></p>
+      
+           
+             <p><select data-bind="options: callTime, value: selectedTime"></select></p>
+        <p><button data-bind="click: addPerson">Add</button></p>
+       
+       
+    <script type="text/javascript">
+        function Person() {
+            var self = this;
+
+            self.firstname = ko.observable("john");
+            self.lastname = ko.observable("smith");
+            self.canCall = ko.observable(true);
+            self.phone = ko.observable();
+            self.sphone = ko.observable();
+            self.callTime = ko.observableArray(['morning', 'evening']);
+            self.selectedTime = ko.observable('evening');
+            
+            self.addPerson = function(model, event) {
+                alert(model.firstname() + " " + model.lastname());
+            }
+        }
+
+        ko.applyBindings(new Person());
+    </script>
+
+         <!--
+             self.phone = ko.observable();
+            self.sphone = ko.observable();
+              <p>Phone: <input data-bind="value: phone" /></p>
+             <p>Secondary Phone: <input data-bind="value: sphone, enable: phone" /></p>
+       -->
+
+        <!--
+             self.canCall = ko.observable(true);
+            <p>Can telemarket <input data-bind="checked: canCall" type="checkbox" /></p> -->
+
+        <!--
+            self.callTime = ko.observableArray(['morning', 'evening']);
+            self.selectedTime = ko.observable('evening');
+           
+             <p><select data-bind="options: callTime, value: selectedTime"></select></p>
+            -->
+    </form>
+</body>
+</html>

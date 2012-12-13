@@ -1,0 +1,1 @@
+﻿Slides can be found at http://prezi.com/ezar7cewsxed/intro-to-knockoutjs/

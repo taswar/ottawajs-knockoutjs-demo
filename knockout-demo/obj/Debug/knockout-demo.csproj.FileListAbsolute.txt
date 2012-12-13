@@ -1,0 +1,10 @@
+c:\users\onursevin\documents\visual studio 2012\Projects\knockout-demo\knockout-demo\bin\knockout-demo.dll
+c:\users\onursevin\documents\visual studio 2012\Projects\knockout-demo\knockout-demo\bin\knockout-demo.pdb
+c:\users\onursevin\documents\visual studio 2012\Projects\knockout-demo\knockout-demo\obj\Debug\knockout-demo.csprojResolveAssemblyReference.cache
+c:\users\onursevin\documents\visual studio 2012\Projects\knockout-demo\knockout-demo\obj\Debug\knockout-demo.dll
+c:\users\onursevin\documents\visual studio 2012\Projects\knockout-demo\knockout-demo\obj\Debug\knockout-demo.pdb
+C:\Users\OnurSevin\Documents\Visual Studio 2012\Projects\knockout.js-presentation-master\knockout-demo\bin\knockout-demo.dll
+C:\Users\OnurSevin\Documents\Visual Studio 2012\Projects\knockout.js-presentation-master\knockout-demo\bin\knockout-demo.pdb
+C:\Users\OnurSevin\Documents\Visual Studio 2012\Projects\knockout.js-presentation-master\knockout-demo\obj\Debug\knockout-demo.csprojResolveAssemblyReference.cache
+C:\Users\OnurSevin\Documents\Visual Studio 2012\Projects\knockout.js-presentation-master\knockout-demo\obj\Debug\knockout-demo.dll
+C:\Users\OnurSevin\Documents\Visual Studio 2012\Projects\knockout.js-presentation-master\knockout-demo\obj\Debug\knockout-demo.pdb

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+<hr />
+    <h2>Computed sample</h2>
+    <hr />
+    <div data-bind="text: name"></div><hr />
+    <input data-bind="value: name" type="text" /><br />
+    <input data-bind="value: showFull()" type="text"></input>
+
+    <script type="text/javascript">
+        function NasaViewModel() {
+            this.name = ko.observable("Curosity Mars Mission");
+            this.serial = ko.observable("123456789");
+            this.finding_aliens = ko.observable("low");
+            this.showFull = ko.computed({
+                read: function () {
+                    return this.name() + " " + this.serial();
+                },
+                write: function (value) {
+                    var lastSpacePos = value.lastIndexOf(" ");
+                    if (lastSpacePos > 0) { // Ignore values with no space character
+                        this.name(value.substring(0, lastSpacePos));
+                        this.serial(value.substring(lastSpacePos + 1));
+                    }
+                },
+                owner: this
+            });
+        };
+		
+		
+		// computed with read write
+		
+		
+		
+		
+		
+        
+        ko.applyBindings(new NasaViewModel());     
+    </script>
+</body>
+</html>1

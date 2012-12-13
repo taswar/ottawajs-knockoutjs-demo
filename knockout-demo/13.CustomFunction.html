@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+	<script src="Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+Adding custom functions using "fn"
+<pre style="border: 1px solid black;">
+To attach a custom function, add it to one of the following extensibility points:
+
+    ko.subscribable.fn
+    ko.observable.fn
+    ko.observableArray.fn
+    ko.computed.fn
+
+Then, your custom function will become available on all values of that type created from that point onwards.
+</pre>
+
+<div>
+        Firtname : <input type="text" name="firstname" data-bind="value: firstname" /> <br />
+        Lastname: <input type="text" name="lastname" data-bind="value: lastname" /><br />
+        Age: <input type="text" name="age" data-bind="value: age.forcePositive()" /><br />
+    </div>
+<script type="text/javascript">
+	ko.observable.fn.forcePositive = function() {
+		var underlyingObservable = this;
+		if (!this.forcePositiveInterceptor) {
+			this.forcePositiveInterceptor = ko.computed({
+				read: this,
+				write: function(newValue) {
+					var current = underlyingObservable(),
+						valueToWrite = isNaN(newValue) ? 0 : parseFloat(+newValue);
+     
+					if (valueToWrite < 0) {
+					valueToWrite = 0;   
+					}
+                
+					//only write if it changed
+					if (valueToWrite !== current) {
+						underlyingObservable(valueToWrite);
+					} else {
+						//if the rounded value is the same as it was, but a different value was written, force a notification so the current field is updated to the rounded value
+						if (newValue !== current) {
+							underlyingObservable.valueHasMutated();
+						}
+					}   
+				}
+        });
+    }            
+        
+    return this.forcePositiveInterceptor;        
+	};
+                                      
+                                      
+                                      
+function viewModel()  {
+	this.firstname = ko.observable("Taswar");
+	this.lastname = ko.observable("Bhatti");
+	this.age = ko.observable(36);	      
+};
+ko.applyBindings(new viewModel());
+</script>
+	
+

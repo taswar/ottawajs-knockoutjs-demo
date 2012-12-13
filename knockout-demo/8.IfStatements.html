@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+</head>
+<body>
+     <p>$if parameter pass eval to true</p>
+     <p>$ifnot parameter pass eval to true</p>
+    <table>
+        <thead>
+            <th>Product</th>
+            <th>Price</th>
+        </thead>
+        <tbody data-bind="foreach: shoppingCart" border="1">
+            <tr>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: price"></td>
+                <td data-bind="if: discount() > 0">
+                    <span style="color: red">Woo hoo discount product</span>                   
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+     <script type="text/javascript">
+         function Product(name, price, discount) {
+             this.name = ko.observable(name);
+             this.price = ko.observable(price);
+             discount = discount || 0;
+             this.discount = ko.observable(discount);
+         }
+
+         function ViewModel() {
+             var self = this;
+
+             self.shoppingCart = ko.observableArray([
+                     new Product("Coffee", 1, 0.2),
+                     new Product("Cookies", 1),
+                     new Product("Muffin", 2)
+             ]);
+         }
+         ko.applyBindings(new ViewModel());
+
+     </script>
+
+</body>
+</html>

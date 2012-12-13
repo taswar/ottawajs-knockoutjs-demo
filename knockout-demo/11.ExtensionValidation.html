@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+</head>
+<body>
+
+    observable validation
+<input data-bind="value: username, valueUpdate: 'afterkeydown'" />
+<br />
+<p class="error" data-bind="visible: hasError">Too long</p>
+
+    <script type="text/javascript">
+    var Client = function() {
+        this.username = ko.observable("taswar");
+        this.hasError = ko.observable(false);
+  
+        this.username.subscribe(function(newval) {
+            this.hasError(newval && newval.length > 10);
+        }, this);
+  };
+  
+  ko.applyBindings(new Client());
+</script>
+</body>
+</html>

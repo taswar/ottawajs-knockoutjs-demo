@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/knockout-2.1.0.js"></script>
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+
+    <p>Firstname: <input data-bind="value: firstname" /></p>
+        <p>Lastname: <input data-bind="value: lastname" /></p>
+        <p><button data-bind="click: loadData">Get</button></p>
+     <p><button data-bind="click: saveData">Save</button></p>
+
+     <script type="text/javascript">
+         function Person() {
+             var self = this;
+
+             self.firstname = ko.observable();
+             self.lastname = ko.observable();
+             
+             self.loadData = function () {
+                 $.getJSON('/get-user-data', function (data) {
+                     self.firstname(data.firstname);
+                     self.lastname(data.lastname);
+                 });
+             }
+
+             self.saveData = function () {
+                 var send_data = { userData: ko.toJSON(self) };
+                 $.post("/save-user", send_data, function (data) {
+                     alert('User saved');
+                 });
+             }
+         }
+
+         ko.applyBindings(new Person());
+    </script>
+</body>
+</html>
